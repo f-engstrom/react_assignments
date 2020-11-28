@@ -1,0 +1,17 @@
+.upper-nav{
+    
+    background-color: #3d7dca;
+}
+
+.lower-nav{
+
+    display: flex;
+    justify-content: center;
+    background-color: #003a70;
+}
+.navlink{
+    
+    padding-left: 40px;
+    
+}
+
