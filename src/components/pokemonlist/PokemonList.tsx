@@ -27,10 +27,9 @@ export const PokemonListView = (props: any) => {
     const paginator = (pokemon: any) => {
 
 
-        console.log("pagina",pokemon);
-        return pokemon.slice(page, page+15);
+        console.log("pagina", pokemon);
+        return pokemon.slice(page, page + 15);
 
-        
 
     }
 
@@ -38,34 +37,34 @@ export const PokemonListView = (props: any) => {
     const getPokemon = async (query: string) => {
 
 
-        let page:[] =[];
-        
+        let page: [] = [];
+
         if (query) {
 
 
-            const foundPokemon = fuse.search(query) as {refIndex:number,item: { name:string,url:string }}[];
-            let found:{item:object, refIndex:number}[] =[];
+            const foundPokemon = fuse.search(query) as { refIndex: number, item: { name: string, url: string } }[];
+            let found: { item: object, refIndex: number }[] = [];
             found = foundPokemon as [];
             console.log("found pokemon", foundPokemon);
-         
+
             const res = foundPokemon.map(({item, ...r}) => (
                 {
                     name: item.name,
-                    url:item.url
+                    url: item.url
                 }
             ));
 
-            console.log("res",res);
+            console.log("res", res);
             page = paginator(res);
-            
+
         } else {
 
             console.log("all pkmn", allPokemon);
             console.log("page", page);
             page = paginator(allPokemon);
-            
+
         }
-         setPokemon(page);
+        setPokemon(page);
 
 
     };
@@ -73,7 +72,7 @@ export const PokemonListView = (props: any) => {
     useEffect(() => {
 
         console.log("list query", query);
-        console.log("page",page);
+        console.log("page", page);
         getPokemon(query);
 
 
@@ -82,7 +81,7 @@ export const PokemonListView = (props: any) => {
     if (!pokemon) return (<div>loading</div>)
 
     return (
-        <div>
+        <div className="">
 
             <ul className="list-group">
                 {(pokemon || []).map((pokemon: any) => {
@@ -93,21 +92,19 @@ export const PokemonListView = (props: any) => {
                     </li>
                 })}
             </ul>
-            <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                    <li className="page-item">
-                        <button onClick={() => {
-                            if (page > 1) setPage(page - 1)
-                        }} className="page-link">Previous
-                        </button>
-                    </li>
-                    <li className="page-item">
-                        <button onClick={() => {
-                            setPage(page + 1)
-                        }} className="page-link">Next
-                        </button>
-                    </li>
-                </ul>
+            <nav aria-label="Page navigation ">
+
+                <button onClick={() => {
+                    if (page > 1) setPage(page - 1)
+                }} className="btn ">Previous
+                </button>
+
+
+                <button onClick={() => {
+                    setPage(page + 1)
+                }} className="btn ">Next
+                </button>
+
             </nav>
         </div>
 

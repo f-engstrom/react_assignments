@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {PokemonContext} from "../../shared/provider/PokemonProvider";
 import "./PokemonDetails.css";
+import pokeball from '../../shared/images/pokeball.gif'
 
 export const PokemonDetailsView = () => {
 
@@ -43,7 +44,7 @@ export const PokemonDetailsView = () => {
     }, [chosenPokemon]);
 
 
-    if (!pokemon) return (<div>loading..</div>)
+    if (!pokemon) return (<div><img className="center" src={pokeball} alt="loading.."/></div>)
 
     return (<div>
 
