@@ -15,11 +15,11 @@ export const PokemonListView = (props: any) => {
     const [chosenPokemon, setChosenPokemon] = useContext(PokemonContext);
     const allPokemonString = localStorage.getItem(BrowserCache.allPokemon);
     const [page, setPage] = useState(1);
+    const [clickedListItem, setClickedListItem] =useState();
     let allPokemon: [] = [];
     allPokemon = JSON.parse(allPokemonString as string);
     const fuse = new Fuse(allPokemon, {keys: ['name']})
 
-    console.log("list view props", props);
 
     let query = props.query;
 
@@ -27,12 +27,25 @@ export const PokemonListView = (props: any) => {
     const paginator = (pokemon: any) => {
 
 
-        console.log("pagina", pokemon);
         return pokemon.slice(page, page + 15);
 
 
     }
 
+    const toggleActive = (e:any)=>{
+        
+        
+        
+        if(clickedListItem){ // @ts-ignore
+            clickedListItem.classList.remove("active")
+        }
+        
+        e.target.className += " active";
+        
+        setClickedListItem(e.target);
+        
+        
+    }
 
     const getPokemon = async (query: string) => {
 
@@ -71,8 +84,7 @@ export const PokemonListView = (props: any) => {
 
     useEffect(() => {
 
-        console.log("list query", query);
-        console.log("page", page);
+       
         getPokemon(query);
 
 
@@ -83,11 +95,11 @@ export const PokemonListView = (props: any) => {
     return (
         <div className="">
 
-            <ul className="list-group">
+            <ul className="list-group" onClick={((e:any) => {toggleActive(e)})} >
                 {(pokemon || []).map((pokemon: any) => {
-                    return <li onClick={(e: any) => {
+                    return <li key={pokemon.name} id={pokemon.name} onClick={(e: any) => {
                         setChosenPokemon(e.target.innerHTML)
-                    }} className="list-group-item">
+                    }} className="list-group-item " >
                         {pokemon.name}
                     </li>
                 })}

@@ -16,7 +16,6 @@ export const PokemonDetailsView = () => {
 
             let response = await fetch("https://pokeapi.co/api/v2/pokemon" + `/${name}`);
             let body = await response.json();
-            console.log("response", body);
             setPokemon({
                 name: body.name,
                 speed: body.stats[0].base_stat,
@@ -37,8 +36,7 @@ export const PokemonDetailsView = () => {
 
     useEffect(() => {
 
-        console.log("chosen pokemon in details", chosenPokemon);
-        getPokemonData(chosenPokemon);
+        if(chosenPokemon)getPokemonData(chosenPokemon);
 
 
     }, [chosenPokemon]);

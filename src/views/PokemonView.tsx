@@ -9,7 +9,6 @@ export const PokemonView = () => {
     
     const [chosenPokemon,setChosenPokemon] = useContext(PokemonContext);
     const query = new URLSearchParams(useLocation().search);
-    console.log(query.get("name"));
 
     return (
         
