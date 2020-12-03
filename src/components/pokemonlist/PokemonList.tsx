@@ -87,6 +87,9 @@ export const PokemonListView = (props: any) => {
        
         getPokemon(query);
 
+        return ()=>{alert("thank you for looking at pokemon")}
+        
+        
 
     }, [props.query, page]);
 

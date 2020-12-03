@@ -37,6 +37,8 @@ export const PokemonDetailsView = () => {
     useEffect(() => {
 
         if(chosenPokemon)getPokemonData(chosenPokemon);
+        
+        
 
 
     }, [chosenPokemon]);
